@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,body,:root{
+  height: 100%;
+}
+
+/* START: general use*/
+.container__main{
+  @apply max-w-[2520px] mx-auto xl:px-20 md:px-10 sm:px-2 px-4;
+}
+.flex__row__between{
+  @apply flex flex-row items-center justify-between gap-3 md:gap-0;
+}
+.flex__row__center{
+  @apply flex flex-row items-center justify-center;
+}
+
+.custom__btn{
+  @apply relative disabled:opacity-70 disabled:cursor-not-allowed rounded-lg hover:opacity-80 transition w-full py-3 text-white font-semibold border-2;
+}
+/* END: general use*/
+
+
+/*START: nav styles*/
+
+.nav_font{
+@apply text-sm font-semibold px-6;
+}
+
+/* END: nav end styles*/
