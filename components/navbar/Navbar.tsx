@@ -4,6 +4,7 @@ import Image from 'next/image';
 import React from 'react'
 import Searchbar from './Searchbar';
 import UserMenu from './UserMenu';
+import Categories from './Categories';
 
 function Navbar() {
   return (
@@ -17,6 +18,7 @@ function Navbar() {
             </div>
         </div>
       </div>
+      <Categories/>
     </div>
   )
 }
