@@ -3,7 +3,7 @@
 import {signIn} from 'next-auth/react';
 
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import Modal from './Modal';
 import Input from '../inputs/Input';
@@ -13,12 +13,15 @@ import {FcGoogle} from 'react-icons/fc'
 import { AiFillGithub } from 'react-icons/ai';
 import useLoginModal from '@/app/hooks/useLoginModal';
 import { useRouter } from 'next/navigation';
+import RegisterModal from './RegisterModal';
+import useRegisterModal from '@/app/hooks/useRegisterModal';
 
 function LoginModal() {
 
     const router = useRouter();
 
     const loginModal = useLoginModal();
+    const registerModal = useRegisterModal();
 
     const [ isLoading, setisLoading] = useState(false);  
 
@@ -50,6 +53,11 @@ function LoginModal() {
       })
     }
 
+    const toggle = useCallback(()=>{
+      loginModal.onClose();
+      registerModal.onOpen();
+    },[loginModal, registerModal]);
+
     const body=(
       <div className='flex flex-col gap-4'>
         <Heading title='Welcome back' subtitle='Login to your account'/>
@@ -67,7 +75,7 @@ function LoginModal() {
             <div>
               Already have an account?
             </div>
-            <div className='text-neutral-800 cursor-pointer hover:underline'>Login</div>
+            <div className='text-neutral-800 cursor-pointer hover:underline' onClick={toggle}>Login</div>
           </div>
         </div>
       </div>
