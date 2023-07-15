@@ -5,8 +5,13 @@ import React from 'react'
 import Searchbar from './Searchbar';
 import UserMenu from './UserMenu';
 import Categories from './Categories';
+import { User } from '@prisma/client';
 
-function Navbar() {
+interface NavbarProps{
+  currentUser?: User | null;
+}
+
+function Navbar({currentUser}: NavbarProps) {
   return (
     <div className='fixed w-full bg-white z-10 shadow-sm'>
       <div className='py-4 border-b-[1px]'>
@@ -14,7 +19,7 @@ function Navbar() {
             <div className='flex__row__between'>
                 <Image src='/airbnb1.png' width={50} height={50} alt='logo'/>
                 <Searchbar/>
-                <UserMenu/>
+                <UserMenu currentUser={currentUser}/>
             </div>
         </div>
       </div>

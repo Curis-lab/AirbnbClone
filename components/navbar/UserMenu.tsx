@@ -7,9 +7,14 @@ import { AiOutlineMenu } from 'react-icons/ai';
 import MenuItem from './MenuItem';
 import LoginModal from '../modals/LoginModal';
 import useLoginModal from '@/app/hooks/useLoginModal';
+import { User } from '@prisma/client';
+import { signOut } from 'next-auth/react';
 
+interface UserMenuProps{
+  currentUser?: User | null;
+}
 
-function UserMenu() {
+function UserMenu({currentUser}: UserMenuProps) {
   
   const [isOpen, setisOpen] = useState(false);
   
@@ -39,10 +44,24 @@ function UserMenu() {
       {isOpen && (
         <div className='absolute rounded-xl shadow-md w-[40vw] md:w-3/4 bg-white overflow-hidden right-0 top-12 text-sm'>
             <div className='flex flex-col cursor-pointer'>
-                <>
+                {currentUser
+                ?(
+                  <>
+                    <MenuItem label='My trips' onClick={()=>{}}/>
+                    <MenuItem label='My Favorites' onClick={()=>{}}/>
+                    <MenuItem label='My reservations' onClick={()=>{}}/>
+                    <MenuItem label='My properties' onClick={()=>{}}/>
+                    <MenuItem label='Airbnb my home' onClick={()=>{}}/>
+                    <hr/>
+                    <MenuItem label='Logout' onClick={()=>signOut()}/>
+                </>
+                )
+                :(
+                  <>
                     <MenuItem label='singout' onClick={loginModal.onOpen}/>
                     <MenuItem label='singin' onClick={registerModal.onOpen}/>
                 </>
+                )}
             </div>
         </div>
       )}
