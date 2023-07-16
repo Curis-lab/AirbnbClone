@@ -15,14 +15,14 @@ export type CountrySelectValue = {
 
 interface CountrySelectProps{
     value?:CountrySelectValue,
-    onChange?: (value: CountrySelectValue) => void
+    onchange?: (value: CountrySelectValue) => void
 }
 
-function CountrySelect({value, onChange}: CountrySelectProps) {
+function CountrySelect({value, onchange}: CountrySelectProps) {
     const {getAll} = useCountries();
     return (
     <div>
-      <Select placeholder="Anywhere" isClearable options={getAll()} value={value} onChange={(value)=>onChange(value as CountrySelectValue)} 
+      <Select placeholder="Anywhere" isClearable options={getAll()} value={value} onChange={(value)=>(onchange(value as CountrySelectValue))} 
       formatOptionLabel={(option: any)=>(
         <div className='flex flex-row items-center gap-3'>
             <div>{option.flag}</div>

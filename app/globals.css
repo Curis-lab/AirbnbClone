@@ -30,3 +30,13 @@ html,body,:root{
 }
 
 /* END: nav end styles*/
+
+
+/*START: leaflet styles*/
+.leaflet-bottom,
+.leaflet-control,
+.leaflet-pane,
+.leaflet-top{
+  z-index: 0 !important;
+}
+/*END: leaflet styles*/
