@@ -16,7 +16,7 @@ interface ListingCardProps{
     onAction?:(id: string) => void,
     disabled?: boolean,
     actionLabel?: string,
-    actionId?: string,
+    actionId?: string | undefined,
     currentUser?: SafeUser | null
 }
 
@@ -35,6 +35,7 @@ function ListingCard({
     if(disabled){
         return;
     }
+    
     onAction?.(actionId);
   },[onAction, actionId, disabled]);
 

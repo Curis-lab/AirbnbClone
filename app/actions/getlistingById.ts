@@ -1,6 +1,4 @@
-import { useParams } from "next/navigation";
-import { parseCommandLine } from "typescript";
-import client from "../libs/prismadb";
+import { list } from "postcss";
 
 interface IParams{
     listingId?: string
@@ -10,7 +8,11 @@ export default async function getlistingById(params: IParams ){
     try{
         const {listingId} = params;
 
-        const listing = await client.listing.findUnique({
+        console.log(listingId);
+        
+        console.log('this is routeing on getlist Byid');
+
+        const listing = await prisma?.listing.findUnique({
             where:{
                 id: listingId
             },
@@ -18,12 +20,12 @@ export default async function getlistingById(params: IParams ){
                 user: true
             }
         });
-
         if(!listing){
             return null;
+        }else{
+            console.log(listing);
         }
-
-        return {
+        return{
             ...listing,
             createdAt: listing.createAt.toISOString(),
             user:{
@@ -31,7 +33,7 @@ export default async function getlistingById(params: IParams ){
                 createdAt: listing.user.createAt.toISOString(),
                 updatedAt: listing.user.updateAt.toISOString(),
                 emailVerified: listing.user.emailVerified?.toISOString() || null
-            }            
+            }
         }
     }catch(error){
         throw new Error(`Invalid error value`);
