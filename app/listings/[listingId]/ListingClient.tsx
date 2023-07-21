@@ -1,7 +1,7 @@
 "use client";
 
 import useLoginModal from '@/app/hooks/useLoginModal';
-import { SafeListing, SafeUser } from '@/app/types';
+import { SafeListing, SafeReservations, SafeUser } from '@/app/types';
 import ListingHead from '@/components/listings/ListingHead';
 import ListingInfo from '@/components/listings/ListingInfo';
 import ListingReservation from '@/components/listings/ListingReservation';
@@ -11,6 +11,7 @@ import axios from 'axios';
 import { differenceInCalendarDays, differenceInDays, eachDayOfInterval } from 'date-fns';
 import { useRouter } from 'next/navigation';
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import { Range } from 'react-date-range';
 
 const initialDateRange = {
   startDate: new Date(),
@@ -19,7 +20,7 @@ const initialDateRange = {
 };
 
 interface ListingClientProps{
-    reservations?: Reservation[];
+    reservations?: SafeReservations[];
     listing: SafeListing & {
         user: SafeUser
     },
@@ -50,7 +51,7 @@ function ListingClient({
 
   const [isLoading, setIsLoading] = useState(false);
   const [totalPrice, setTotalPrice] = useState(listing.price);
-  const [dateRange, setDateRange] = useState(initialDateRange);
+  const [dateRange, setDateRange] = useState<Range>(initialDateRange);
 
   const onCreateReservation = useCallback(()=>{
     if(!currentUser){

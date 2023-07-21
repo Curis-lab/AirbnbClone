@@ -40,3 +40,11 @@ html,body,:root{
   z-index: 0 !important;
 }
 /*END: leaflet styles*/
+
+.rdrMonth{
+  width: 100% !important;
+}
+.rdrCalendarWrapper{
+  width: 100% !important;
+  font-size: 16px !important;
+}
